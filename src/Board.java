@@ -1,5 +1,8 @@
 public class Board {
-    public static void main(String[] args) {
-        System.out.println("hi");
+
+    public static int [][] gameBoard;
+
+    public static void createNewBoard() {
+        gameBoard = new int[4][4];
     }
 }
