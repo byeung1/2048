@@ -10,7 +10,7 @@ public class Game {
         Scanner sc = new Scanner(System.in);
 
         board.createNewBoard();
-        board.generateTwoTiles();
+        
         board.printBoard();
 
         while (true) {
@@ -55,8 +55,8 @@ public class Game {
                     board.setValue(row, j - 1, board.getValue(row, j));
                     board.setValue(row, j, 0);
                 }
-                else if (board.getValue(row, j - 1) == board.getValue(row, j) && !merged[j - 1]) {
-                    merged[j] = true;
+                else if (board.getValue(row, j - 1) == board.getValue(row, j) && !merged[j - 1] && !merged[j]) {
+                    merged[j - 1] = true;
                     board.setValue(row, j - 1, 2*board.getValue(row, j - 1));
                     score += board.getValue(row, j - 1);
                     board.setValue(row, j, 0);
@@ -83,8 +83,8 @@ public class Game {
                     board.setValue(row, j + 1, board.getValue(row, j));
                     board.setValue(row, j, 0);
                 }
-                else if (board.getValue(row, j + 1) == board.getValue(row, j) && !merged[j + 1]) {
-                    merged[j] = true;
+                else if (board.getValue(row, j + 1) == board.getValue(row, j) && !merged[j + 1] && !merged[j]) {
+                    merged[j + 1] = true;
                     board.setValue(row, j + 1, 2*board.getValue(row, j + 1));
                     score += board.getValue(row, j + 1);
                     board.setValue(row, j, 0);
@@ -111,8 +111,8 @@ public class Game {
                     board.setValue(j - 1, column, board.getValue(j, column));
                     board.setValue(j, column, 0);
                 }
-                else if (board.getValue(j - 1, column) == board.getValue(j, column) && !merged[j - 1]) {
-                    merged[j] = true;
+                else if (board.getValue(j - 1, column) == board.getValue(j, column) && !merged[j + 1] && !merged[j]) {
+                    merged[j + 1] = true;
                     board.setValue(j - 1, column, 2*board.getValue(j - 1, column));
                     score += board.getValue(j - 1, column);
                     board.setValue(j, column, 0);
@@ -139,8 +139,8 @@ public class Game {
                     board.setValue(j + 1, column, board.getValue(j, column));
                     board.setValue(j, column, 0);
                 }
-                else if (board.getValue(j + 1, column) == board.getValue(j, column) && !merged[j + 1]) {
-                    merged[j] = true;
+                else if (board.getValue(j + 1, column) == board.getValue(j, column) && !merged[j - 1] && !merged[j]) {
+                    merged[j - 1] = true;
                     board.setValue(j + 1, column, 2*board.getValue(j + 1, column));
                     score += board.getValue(j + 1, column);
                     board.setValue(j, column, 0);
