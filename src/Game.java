@@ -10,7 +10,9 @@ public class Game {
         Scanner sc = new Scanner(System.in);
 
         board.createNewBoard();
-        
+
+        board.generateTwoTiles();
+
         board.printBoard();
 
         while (true) {
