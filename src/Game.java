@@ -20,7 +20,10 @@ public class Game {
                     for (int i = 0; i < 4; i++)
                         left(i, board);
                     break;
-            
+                case "d": //for moving right
+                    for (int i = 0; i < 4; i++)
+                        right(i, board);
+                    break;
                 default:
                     break;
             }
@@ -46,7 +49,8 @@ public class Game {
                 }
                 else if (board.getValue(row, j - 1) == board.getValue(row, j) && !merged[j - 1]) {
                     merged[j] = true;
-                    board.setValue(row, j - 1, score += board.getValue(row, j - 1));
+                    board.setValue(row, j - 1, 2*board.getValue(row, j - 1));
+                    score += board.getValue(row, j - 1);
                     board.setValue(row, j, 0);
                 }
                 else {
@@ -54,6 +58,35 @@ public class Game {
                 }
 
                 j--;
+
+            }
+        }
+        
+    }
+
+    public static void right(int row, Board board) {
+        boolean[] merged = new boolean[4];
+        for (int j = 3; j > -1; j--) {
+            while (true) {
+
+                if(board.getValue(row, j) == 0 || j + 1 == 4)
+                    break;
+
+                if (board.getValue(row, j + 1) == 0) {
+                    board.setValue(row, j + 1, board.getValue(row, j));
+                    board.setValue(row, j, 0);
+                }
+                else if (board.getValue(row, j + 1) == board.getValue(row, j) && !merged[j + 1]) {
+                    merged[j] = true;
+                    board.setValue(row, j + 1, 2*board.getValue(row, j + 1));
+                    score += board.getValue(row, j + 1);
+                    board.setValue(row, j, 0);
+                }
+                else {
+                    break;
+                }
+
+                j++;
 
             }
         }
