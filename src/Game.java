@@ -24,6 +24,14 @@ public class Game {
                     for (int i = 0; i < 4; i++)
                         right(i, board);
                     break;
+                case "w": //for moving up
+                    for (int i = 0; i < 4; i++)
+                        up(i, board);
+                    break;
+                case "s": //for moving down
+                    for (int i = 0; i < 4; i++)
+                        down(i, board);
+                    break;
                 default:
                     break;
             }
@@ -61,7 +69,6 @@ public class Game {
 
             }
         }
-        
     }
 
     public static void right(int row, Board board) {
@@ -90,6 +97,61 @@ public class Game {
 
             }
         }
-        
+    }
+
+    public static void up(int column, Board board) {
+        boolean[] merged = new boolean[4];
+        for (int j = 1; j < 4; j++) {
+            while (true) {
+
+                if(board.getValue(j, column) == 0 || j - 1 == -1)
+                    break;
+
+                if (board.getValue(j - 1, column) == 0) {
+                    board.setValue(j - 1, column, board.getValue(j, column));
+                    board.setValue(j, column, 0);
+                }
+                else if (board.getValue(j - 1, column) == board.getValue(j, column) && !merged[j - 1]) {
+                    merged[j] = true;
+                    board.setValue(j - 1, column, 2*board.getValue(j - 1, column));
+                    score += board.getValue(j - 1, column);
+                    board.setValue(j, column, 0);
+                }
+                else {
+                    break;
+                }
+
+                j--;
+
+            }
+        }
+    }
+
+    public static void down(int column, Board board) {
+        boolean[] merged = new boolean[4];
+        for (int j = 3; j > -1; j--) {
+            while (true) {
+
+                if(board.getValue(j, column) == 0 || j + 1 == 4)
+                    break;
+
+                if (board.getValue(j + 1, column) == 0) {
+                    board.setValue(j + 1, column, board.getValue(j, column));
+                    board.setValue(j, column, 0);
+                }
+                else if (board.getValue(j + 1, column) == board.getValue(j, column) && !merged[j + 1]) {
+                    merged[j] = true;
+                    board.setValue(j + 1, column, 2*board.getValue(j + 1, column));
+                    score += board.getValue(j + 1, column);
+                    board.setValue(j, column, 0);
+                }
+                else {
+                    break;
+                }
+
+                j++;
+
+            }
+        }
     }
 }
