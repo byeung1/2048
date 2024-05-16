@@ -10,6 +10,19 @@ public class Board {
         gameBoard=new int[4][4];
     }
 
+    /**
+     * chooses between 2 and 4 with a 10% chance of being 4
+     */
+    public static int chooseTwoOrFour()
+    {
+        Random random=new Random(); 
+        int a=random.nextInt(10)+1==7?4:2;
+        return a;
+    }
+    
+    /**
+     * generates two random tiles
+     */
     public static void generateTwoTiles() {
         Random random=new Random(); 
 
@@ -21,11 +34,7 @@ public class Board {
         }
 
         //choosing between 2 and 4 for the two random values
-        int num1=2,num2=2;
-        if (index1<=2)
-            num1=4;
-        if (index2==7)
-            num2=4;
+        int num1=chooseTwoOrFour(),num2=chooseTwoOrFour();
 
         int n=1;
         for (int i=0;i<4;i++){
@@ -40,6 +49,8 @@ public class Board {
             }
         }
     }
+
+
 
     /**
      * getter for gameBoard
