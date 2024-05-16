@@ -1,27 +1,62 @@
 import java.util.*;
 
 public class Game {
+    
+    public static int score = 0;
+
+    public static Board board = new Board();
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        Board board = new Board();
         board.createNewBoard();
-
+        board.generateTwoTiles();
         board.printBoard();
 
         while (true) {
 
             switch (sc.nextLine()) {
-                case "A": //for moving left
-                    for (int i = 0; i < 4; i++) {
-                        
-                    }
+                case "a": //for moving left
+                    for (int i = 0; i < 4; i++)
+                        left(i, board);
                     break;
             
                 default:
                     break;
             }
 
+            board.printBoard();
+
+            System.out.println("Score: " + score);
+
         }
+    }
+
+    public static void left(int row, Board board) {
+        boolean[] merged = new boolean[4];
+        for (int j = 1; j < 4; j++) {
+            while (true) {
+
+                if(board.getValue(row, j) == 0 || j - 1 == -1)
+                    break;
+
+                if (board.getValue(row, j - 1) == 0) {
+                    board.setValue(row, j - 1, board.getValue(row, j));
+                    board.setValue(row, j, 0);
+                }
+                else if (board.getValue(row, j - 1) == board.getValue(row, j) && !merged[j - 1]) {
+                    merged[j] = true;
+                    board.setValue(row, j - 1, score += board.getValue(row, j - 1));
+                    board.setValue(row, j, 0);
+                }
+                else {
+                    break;
+                }
+
+                j--;
+
+            }
+        }
+        
     }
 }
