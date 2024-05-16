@@ -50,6 +50,20 @@ public class Board {
         }
     }
 
+    /**
+     * 
+     * @return number of empty tiles
+     */
+    public static int getEmptyTiles(){
+        int num=0;
+        for (int i=0;i<4;i++) {
+            for (int k=0;k<4;k++) {
+                if (gameBoard[i][k]==0)
+                    num++;
+            }
+        }
+        return num;
+    }
 
 
     /**
@@ -61,6 +75,7 @@ public class Board {
     public int getValue (int row, int column) {
         return gameBoard[row][column];
     }
+
     /**
      * Setter for gameBoard
      * @param row
