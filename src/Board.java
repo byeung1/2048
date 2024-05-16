@@ -60,11 +60,17 @@ public class Board {
         gameBoard[row][column]=value;
     }
     
+    /**
+     * print gameBoard with grid lines formatted
+     */
     public static void printBoard()
     {
         for (int i=0;i<4;i++)
         {
-            
+            System.out.println("---------------------");
+            System.out.println("|"+String.format("%4d", gameBoard[i][0])+"|"+String.format("%4d", gameBoard[i][1])+
+                                "|"+String.format("%4d", gameBoard[i][2])+"|"+String.format("%4d", gameBoard[i][3])+"|");
         }
+        System.out.println("---------------------");
     }
 }
