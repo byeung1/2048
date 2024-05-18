@@ -88,6 +88,27 @@ public class Board {
         return num;
     }
 
+    /**
+     * checks if game is over: board is full and no moves can be made
+     * @return
+     */
+    public static boolean isGameOver() {
+        if (getEmptyTiles()>0)
+            return false;
+        else {
+            for (int i=0;i<4;i++) {
+                for (int k=0;k<3;k++) {
+                    if (gameBoard[i][k]==gameBoard[i][k+1])
+                        return false;
+                    if (gameBoard[k][i]==gameBoard[k+1][i])
+                        return false;
+                }
+            }
+            return true;
+        }
+    }
+
+
 
     /**
      * getter for gameBoard

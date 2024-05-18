@@ -15,7 +15,7 @@ public class Game {
 
         board.printBoard();
 
-        while (true) {
+        while (!board.isGameOver()) {
 
             switch (sc.nextLine()) {
                 case "a": //for moving left
