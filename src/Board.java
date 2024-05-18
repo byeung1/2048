@@ -61,7 +61,10 @@ public class Board {
             for (int k=0;k<4;k++) {
                 if (gameBoard[i][k]==0){
                     if (num==index) 
+                    {
                         gameBoard[i][k]=chooseTwoOrFour();
+                        return;
+                    }
                     else
                         num++;
                 }

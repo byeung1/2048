@@ -38,8 +38,9 @@ public class Game {
                     break;
             }
 
+            board.generateNewTile();
             board.printBoard();
-
+            
             System.out.println("Score: " + score);
 
         }
