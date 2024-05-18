@@ -24,24 +24,28 @@ public class Game {
                     case "a": //for moving left
                         if (left(board)) {
                             board.printBoard();
+                            System.out.println("Score: " + score);
                             break outer;
                         }
                         break;
                     case "d": //for moving right
                         if (right(board)) {
                             board.printBoard();
+                            System.out.println("Score: " + score);
                             break outer;
                         }
                         break;
                     case "w": //for moving up
                         if (up(board)) {
                             board.printBoard();
+                            System.out.println("Score: " + score);
                             break outer;
                         }
                         break;
                     case "s": //for moving down
                         if (down(board)) {
                             board.printBoard();
+                            System.out.println("Score: " + score);
                             break outer;
                         }
                         break;
