@@ -51,6 +51,26 @@ public class Board {
     }
 
     /**
+     * generates a random new tile
+     */
+    public static void generateNewTile() {
+        Random random=new Random(); 
+        int index=random.nextInt(getEmptyTiles())+1;
+        int num=1;
+        for (int i=0;i<4;i++) {
+            for (int k=0;k<4;k++) {
+                if (gameBoard[i][k]==0){
+                    if (num==index) 
+                        gameBoard[i][k]=chooseTwoOrFour();
+                    else
+                        num++;
+                }
+                    
+            }
+        }
+    }
+
+    /**
      * 
      * @return number of empty tiles
      */
