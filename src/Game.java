@@ -22,33 +22,33 @@ public class Game {
 
                 switch (sc.nextLine()) {
                     case "a": //for moving left
-                        if (left(board)) {
+                        if (!left(board)) {
                             board.printBoard();
                             System.out.println("Score: " + score);
-                            break outer;
+                            break;
                         }
-                        break;
+                        break outer;
                     case "d": //for moving right
-                        if (right(board)) {
+                        if (!right(board)) {
                             board.printBoard();
                             System.out.println("Score: " + score);
-                            break outer;
+                            break;
                         }
-                        break;
+                        break outer;
                     case "w": //for moving up
-                        if (up(board)) {
+                        if (!up(board)) {
                             board.printBoard();
                             System.out.println("Score: " + score);
-                            break outer;
+                            break;
                         }
-                        break;
+                        break outer;
                     case "s": //for moving down
-                        if (down(board)) {
+                        if (!down(board)) {
                             board.printBoard();
                             System.out.println("Score: " + score);
-                            break outer;
+                            break;
                         }
-                        break;
+                        break outer;
                     default:
                         break;
                 }
