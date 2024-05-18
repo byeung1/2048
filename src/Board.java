@@ -89,7 +89,7 @@ public class Board {
     }
 
     /**
-     * checks if game is over: board is full and no moves can be made
+     * checks if game is over: board is full and no moves can be mades
      * @return
      */
     public static boolean isGameOver() {
@@ -138,8 +138,14 @@ public class Board {
         for (int i=0;i<4;i++)
         {
             System.out.println("---------------------");
-            System.out.println("|"+String.format("%4d", gameBoard[i][0])+"|"+String.format("%4d", gameBoard[i][1])+
-                                "|"+String.format("%4d", gameBoard[i][2])+"|"+String.format("%4d", gameBoard[i][3])+"|");
+            for (int k=0;k<4;k++) {
+                System.out.print("|");
+                if (gameBoard[i][k]==0)
+                    System.out.print("    ");
+                else
+                    System.out.print(String.format("%4d", gameBoard[i][k]));
+            }
+            System.out.println("|");
         }
         System.out.println("---------------------");
     }
