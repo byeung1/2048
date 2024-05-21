@@ -9,58 +9,74 @@ public class Game {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        board.createNewBoard();
+        int highScore = 0;
 
-        board.generateTwoTiles();
+        do {
 
-        board.printBoard();
+            score = 0;
 
-        while (!board.isGameOver()) {
+            board.createNewBoard();
 
-            outer:
-            while (true) {
+            board.generateTwoTiles();
 
-                switch (sc.nextLine()) {
-                    case "a": //for moving left
-                        if (!left(board)) {
-                            board.printBoard();
-                            System.out.println("Score: " + score);
+            board.printBoard();
+
+            while (!board.isGameOver()) {
+
+                outer:
+                while (true) {
+
+                    switch (sc.nextLine()) {
+                        case "a": //for moving left
+                            if (!left(board)) {
+                                board.printBoard();
+                                System.out.println("Score: " + score);
+                                break;
+                            }
+                            break outer;
+                        case "d": //for moving right
+                            if (!right(board)) {
+                                board.printBoard();
+                                System.out.println("Score: " + score);
+                                break;
+                            }
+                            break outer;
+                        case "w": //for moving up
+                            if (!up(board)) {
+                                board.printBoard();
+                                System.out.println("Score: " + score);
+                                break;
+                            }
+                            break outer;
+                        case "s": //for moving down
+                            if (!down(board)) {
+                                board.printBoard();
+                                System.out.println("Score: " + score);
+                                break;
+                            }
+                            break outer;
+                        default:
                             break;
-                        }
-                        break outer;
-                    case "d": //for moving right
-                        if (!right(board)) {
-                            board.printBoard();
-                            System.out.println("Score: " + score);
-                            break;
-                        }
-                        break outer;
-                    case "w": //for moving up
-                        if (!up(board)) {
-                            board.printBoard();
-                            System.out.println("Score: " + score);
-                            break;
-                        }
-                        break outer;
-                    case "s": //for moving down
-                        if (!down(board)) {
-                            board.printBoard();
-                            System.out.println("Score: " + score);
-                            break;
-                        }
-                        break outer;
-                    default:
-                        break;
+                    }
+
                 }
+
+                board.generateNewTile();
+                board.printBoard();
+                
+                System.out.println("Score: " + score);
 
             }
 
-            board.generateNewTile();
-            board.printBoard();
-            
-            System.out.println("Score: " + score);
+            if (score > highScore)
+                highScore = score;
 
-        }
+            System.out.println("Game Over. Highscore: " + highScore);
+
+            System.out.println("Would you like to play again? Enter y/n");
+
+        } while (sc.nextLine().equals("y"));
+
     }
 
     public static boolean left(Board board) {
