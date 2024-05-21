@@ -88,7 +88,7 @@ public class Game {
             for (int j = 1; j < 4; j++) {
                 while (true) {
 
-                    if(board.getValue(row, j) == 0 || j - 1 == -1)
+                    if(board.getValue(row, j) == 0 || j == 0)
                         break;
 
                     if (board.getValue(row, j - 1) == 0) {
@@ -125,7 +125,7 @@ public class Game {
             for (int j = 2; j > -1; j--) {
                 while (true) {
 
-                    if(board.getValue(row, j) == 0 || j + 1 == 4)
+                    if(board.getValue(row, j) == 0 || j == 3)
                         break;
 
                     if (board.getValue(row, j + 1) == 0) {
@@ -162,7 +162,7 @@ public class Game {
             for (int j = 1; j < 4; j++) {
                 while (true) {
 
-                    if(board.getValue(j, column) == 0 || j - 1 == -1)
+                    if(board.getValue(j, column) == 0 || j == 0)
                         break;
 
                     if (board.getValue(j - 1, column) == 0) {
@@ -199,7 +199,7 @@ public class Game {
             for (int j = 2; j > -1; j--) {
                 while (true) {
 
-                    if(board.getValue(j, column) == 0 || j + 1 == 4)
+                    if(board.getValue(j, column) == 0 || j == 3)
                         break;
 
                     if (board.getValue(j + 1, column) == 0) {
