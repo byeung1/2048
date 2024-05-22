@@ -17,10 +17,13 @@ public class Game {
 
             board.createNewBoard();
 
+            System.out.println("Use the w, a, s, and d keys to move. Press 'r' to restart.");
+
             board.generateTwoTiles();
 
             board.printBoard();
 
+            gameLoop:
             while (!board.isGameOver()) {
 
                 outer:
@@ -55,6 +58,8 @@ public class Game {
                                 break;
                             }
                             break outer;
+                        case "r": //for restarting
+                            break gameLoop;
                         default:
                             break;
                     }
