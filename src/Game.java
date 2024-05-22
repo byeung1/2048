@@ -11,13 +11,14 @@ public class Game {
 
         int highScore = 0;
 
+        quit:
         do {
 
             score = 0;
 
             board.createNewBoard();
 
-            System.out.println("Use the w, a, s, and d keys to move. Press 'r' to restart.");
+            System.out.println("Use the w, a, s, and d keys to move. Press 'r' to restart. Press 'q' to quit.");
 
             board.generateTwoTiles();
 
@@ -60,6 +61,8 @@ public class Game {
                             break outer;
                         case "r": //for restarting
                             break gameLoop;
+                        case "q": //for quiting
+                            break quit;
                         default:
                             break;
                     }
