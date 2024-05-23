@@ -23,6 +23,8 @@ public class Game {
 
             board.createNewBoard();
 
+            System.out.println("Use the w, a, s, and d keys to move. Press 'r' to restart. Press 'q' to quit.");
+
             //instructions
             System.out.println("Use the w, a, s, and d keys to move. Press 'r' to restart. Press 'q' to quit.");
 
@@ -109,29 +111,20 @@ public class Game {
 
     }
 
-    /**
-     * Executes the move left
-     * @param board
-     * @return boolean moved, true if a tile has moved, false if it hasn't
-     */
     public static boolean left(Board board) {
 
         // boolean to check if a tile has moved
         boolean moved = false;
-        // for loop for each row
         for (int row = 0; row < 4; row++) {
 
             // array of booleans to keep track of which tiles have been merged
             boolean[] merged = new boolean[4];
-            // for loop for each tile within the row, starting at 1 because the first tile can't move to the left
             for (int j = 1; j < 4; j++) {
-                // while true loop because each tile can move more than once
                 while (true) {
                     // if the current tile is 0, or if j = 0, because we don't have to consider the leftmost tile
                     if (board.getValue(row, j) == 0 || j == 0)
                         break;
 
-                    // if the tile to the left is 0, then move the current tile to the left, and change the merged array
                     if (board.getValue(row, j - 1) == 0) {
                         board.setValue(row, j - 1, board.getValue(row, j));
                         board.setValue(row, j, 0);
@@ -144,7 +137,7 @@ public class Game {
                     // if the current and previous tile can be merged, and haven't been merged before then merge them and add to the score
                     else if (board.getValue(row, j - 1) == board.getValue(row, j) && (!merged[j - 1] && !merged[j])) {
                         merged[j - 1] = true;
-                        board.setValue(row, j - 1, 2 * board.getValue(row, j - 1));
+                        board.setValue(row, j - 1, 2*board.getValue(row, j - 1));
                         score += board.getValue(row, j - 1);
                         board.setValue(row, j, 0);
                         moved = true;
@@ -164,29 +157,20 @@ public class Game {
         return moved;
     }
 
-    /**
-     * Executes the move right
-     * @param board
-     * @return boolean moved, true if a tile has moved, false if it hasn't
-     */
     public static boolean right(Board board) {
 
         // boolean to check if a tile has moved
         boolean moved = false;
-        // for loop for each row
         for (int row = 0; row < 4; row++) {
 
             // array of booleans to keep track of which tiles have been merged
             boolean[] merged = new boolean[4];
-            // for loop for each tile within the row, starting at 2 because the last tile can't move to the right
             for (int j = 2; j > -1; j--) {
-                // while true loop because each tile can move more than once
                 while (true) {
                     // if the current tile is 0, or if j = 3, because we don't have to consider the rightmost tile
                     if (board.getValue(row, j) == 0 || j == 3)
                         break;
 
-                    // if the tile to the right is 0, then move the current tile to the right, and change the merged array
                     if (board.getValue(row, j + 1) == 0) {
                         board.setValue(row, j + 1, board.getValue(row, j));
                         board.setValue(row, j, 0);
@@ -199,7 +183,7 @@ public class Game {
                     // if the current and next tile can be merged, and haven't been merged before then merge them and add to the score
                     else if (board.getValue(row, j + 1) == board.getValue(row, j) && (!merged[j + 1] && !merged[j])) {
                         merged[j + 1] = true;
-                        board.setValue(row, j + 1, 2 * board.getValue(row, j + 1));
+                        board.setValue(row, j + 1, 2*board.getValue(row, j + 1));
                         score += board.getValue(row, j + 1);
                         board.setValue(row, j, 0);
                         moved = true;
@@ -219,29 +203,20 @@ public class Game {
         return moved;
     }
 
-    /**
-     * Executes the move up
-     * @param board
-     * @return boolean moved, true if a tile has moved, false if it hasn't
-     */
     public static boolean up(Board board) {
 
         // boolean to check if a tile has moved
         boolean moved = false;
-        // for loop for each column
         for (int column = 0; column < 4; column++) {
 
             // array of booleans to keep track of which tiles have been merged
             boolean[] merged = new boolean[4];
-            // for loop for each tile within the column, starting at 1 because the first tile can't move up
             for (int j = 1; j < 4; j++) {
-                // while true loop because each tile can move more than once
                 while (true) {
                     // if the current tile is 0, or if j = 0, because we don't have to consider the topmost tile
                     if (board.getValue(j, column) == 0 || j == 0)
                         break;
 
-                    // if the tile above is 0, then move the current tile up, and change the merged array
                     if (board.getValue(j - 1, column) == 0) {
                         board.setValue(j - 1, column, board.getValue(j, column));
                         board.setValue(j, column, 0);
@@ -254,7 +229,7 @@ public class Game {
                     // if the current and above tile can be merged, and haven't been merged before then merge them and add to the score
                     else if (board.getValue(j - 1, column) == board.getValue(j, column) && (!merged[j - 1] && !merged[j])) {
                         merged[j - 1] = true;
-                        board.setValue(j - 1, column, 2 * board.getValue(j - 1, column));
+                        board.setValue(j - 1, column, 2*board.getValue(j - 1, column));
                         score += board.getValue(j - 1, column);
                         board.setValue(j, column, 0);
                         moved = true;
@@ -274,29 +249,20 @@ public class Game {
         return moved;
     }
 
-    /**
-     * Executes the move down
-     * @param board
-     * @return boolean moved, true if a tile has moved, false if it hasn't
-     */
     public static boolean down(Board board) {
 
         // boolean to check if a tile has moved
         boolean moved = false;
-        // for loop for each column
         for (int column = 0; column < 4; column++) {
 
             // array of booleans to keep track of which tiles have been merged
             boolean[] merged = new boolean[4];
-            // for loop for each tile within the column, starting at 2 because the last tile can't move down
             for (int j = 2; j > -1; j--) {
-                // while true loop because each tile can move more than once
                 while (true) {
                     // if the current tile is 0, or if j = 3, because we don't have to consider the bottommost tile
                     if (board.getValue(j, column) == 0 || j == 3)
                         break;
 
-                    // if the tile below is 0, then move the current tile down, and change the merged array
                     if (board.getValue(j + 1, column) == 0) {
                         board.setValue(j + 1, column, board.getValue(j, column));
                         board.setValue(j, column, 0);
@@ -309,7 +275,7 @@ public class Game {
                     // if the current and below tile can be merged, and haven't been merged before then merge them and add to the score
                     else if (board.getValue(j + 1, column) == board.getValue(j, column) && (!merged[j + 1] && !merged[j])) {
                         merged[j + 1] = true;
-                        board.setValue(j + 1, column, 2 * board.getValue(j + 1, column));
+                        board.setValue(j + 1, column, 2*board.getValue(j + 1, column));
                         score += board.getValue(j + 1, column);
                         board.setValue(j, column, 0);
                         moved = true;
@@ -328,6 +294,4 @@ public class Game {
 
         return moved;
     }
-
 }
-
