@@ -37,7 +37,7 @@ public class Board {
         int num1=chooseTwoOrFour(),num2=chooseTwoOrFour();
 
         int n=1;
-        for (int i=0;i<4;i++){
+        for (int i=0;i<4;i++){ //loops through all elements and give the generated number to chosen index
             for (int k=0;k<4;k++){
                 if (n==index1){
                     gameBoard[i][k]=num1;
@@ -55,14 +55,14 @@ public class Board {
      */
     public static void generateNewTile() {
         Random random=new Random(); 
-        int index=random.nextInt(getEmptyTiles())+1;
+        int index=random.nextInt(getEmptyTiles())+1; // choose an index from empty tiles
         int num=1;
-        for (int i=0;i<4;i++) {
+        for (int i=0;i<4;i++) { //loops through all tiles
             for (int k=0;k<4;k++) {
                 if (gameBoard[i][k]==0){
                     if (num==index) 
                     {
-                        gameBoard[i][k]=chooseTwoOrFour();
+                        gameBoard[i][k]=chooseTwoOrFour(); //generating new number for the corresponding index 
                         return;
                     }
                     else
@@ -79,7 +79,7 @@ public class Board {
      */
     public static int getEmptyTiles(){
         int num=0;
-        for (int i=0;i<4;i++) {
+        for (int i=0;i<4;i++) { //looping through all tiles, add one to num when it's empty
             for (int k=0;k<4;k++) {
                 if (gameBoard[i][k]==0)
                     num++;
@@ -93,10 +93,10 @@ public class Board {
      * @return
      */
     public static boolean isGameOver() {
-        if (getEmptyTiles()>0)
+        if (getEmptyTiles()>0) //return false if there are still empty tiles
             return false;
         else {
-            for (int i=0;i<4;i++) {
+            for (int i=0;i<4;i++) { //loops through all elements, return false if merges can be made
                 for (int k=0;k<3;k++) {
                     if (gameBoard[i][k]==gameBoard[i][k+1])
                         return false;
@@ -104,7 +104,7 @@ public class Board {
                         return false;
                 }
             }
-            return true;
+            return true; //return true if no conditions above are satisfied
         }
     }
 
@@ -135,15 +135,15 @@ public class Board {
      */
     public static void printBoard()
     {
-        for (int i=0;i<4;i++)
+        for (int i=0;i<4;i++) //printing the board by row, separated by dashes as lines
         {
             System.out.println("---------------------");
-            for (int k=0;k<4;k++) {
+            for (int k=0;k<4;k++) { //printing out individual elements separated by '|'
                 System.out.print("|");
                 if (gameBoard[i][k]==0)
-                    System.out.print("    ");
+                    System.out.print("    ");  //print blank if the tile is empty
                 else
-                    System.out.print(String.format("%4d", gameBoard[i][k]));
+                    System.out.print(String.format("%4d", gameBoard[i][k])); //format all numbers to take 4 characters
             }
             System.out.println("|");
         }
